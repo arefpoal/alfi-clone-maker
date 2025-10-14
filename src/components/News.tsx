@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import news1 from "@/assets/news-1.jpg";
 import news2 from "@/assets/news-2.jpg";
 import news3 from "@/assets/news-3.jpg";
 
 const newsArticles = [
   {
+    id: "1",
     image: news1,
     category: "LOGISTICS",
     title: "Government Policies Shape Indonesia's Logistics Industry",
@@ -13,6 +15,7 @@ const newsArticles = [
       "Government Policies Shape Indonesia's Logistics Industry Government Policies Shape Indonesia's Logistics Industry",
   },
   {
+    id: "2",
     image: news2,
     category: "LOGISTICS",
     title: "Global Supply Chain Innovations Transform Local Markets",
@@ -20,6 +23,7 @@ const newsArticles = [
       "Discover how international supply chain innovations are revolutionizing logistics operations across Indonesia",
   },
   {
+    id: "3",
     image: news3,
     category: "LOGISTICS",
     title: "Digital Transformation in Freight Forwarding Sector",
@@ -29,6 +33,8 @@ const newsArticles = [
 ];
 
 const News = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="news" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -51,6 +57,7 @@ const News = () => {
           {newsArticles.map((article, index) => (
             <div
               key={index}
+              onClick={() => navigate(`/news/${article.id}`)}
               className="group bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 animate-slide-up cursor-pointer"
               style={{ animationDelay: `${index * 100}ms` }}
             >
