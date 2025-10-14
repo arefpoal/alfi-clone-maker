@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Menu, X, ChevronDown } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,12 +55,26 @@ const Navbar = () => {
             >
               Expertise
             </button>
-            <button
-              onClick={() => scrollToSection("resources")}
-              className="text-primary-foreground hover:text-secondary transition-colors duration-300 font-medium"
-            >
-              Resources
-            </button>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="text-primary-foreground hover:text-secondary transition-colors duration-300 font-medium flex items-center gap-1">
+                Resources
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-background">
+                <DropdownMenuItem onClick={() => scrollToSection("resources")}>
+                  All Resources
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => scrollToSection("resources")}>
+                  Training Programs
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => scrollToSection("resources")}>
+                  Certifications
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => scrollToSection("resources")}>
+                  Career Development
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <button
               onClick={() => scrollToSection("news")}
               className="text-primary-foreground hover:text-secondary transition-colors duration-300 font-medium"
