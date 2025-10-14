@@ -1,32 +1,27 @@
-import iconDigital from "@/assets/icon-digital.png";
-import iconCareer from "@/assets/icon-career.png";
-import iconTraining from "@/assets/icon-training.png";
-import iconCertification from "@/assets/icon-certification.png";
-
-const services = [
+const historyMilestones = [
   {
-    icon: iconDigital,
-    title: "Digital Platform",
+    year: "1990",
+    title: "Foundation",
     description:
-      "A platform for members to exchange data, access trade docs, and gain business insights from one login.",
+      "Established as a pioneer in Indonesia's freight forwarding industry, setting new standards for logistics excellence.",
   },
   {
-    icon: iconCareer,
-    title: "Job and Career",
+    year: "2000",
+    title: "National Expansion",
     description:
-      "Members can post job vacancies and connect with top industry professionals through a dedicated recruitment hub.",
+      "Expanded operations across major cities in Indonesia, building a robust network of logistics professionals.",
   },
   {
-    icon: iconTraining,
-    title: "Logistic Training",
+    year: "2010",
+    title: "Digital Transformation",
     description:
-      "Through our Institute, we offer globally benchmarked training rooted in local expertise for professionals.",
+      "Launched our digital platform, revolutionizing how logistics data and documentation is managed across the industry.",
   },
   {
-    icon: iconCertification,
-    title: "Certification",
+    year: "2020",
+    title: "Industry Leadership",
     description:
-      "We certify logistics professionals and companies to boost credibility and meet national and global standards.",
+      "Became the leading association for freight forwarders, serving thousands of members with training and certification programs.",
   },
 ];
 
@@ -37,37 +32,35 @@ const Services = () => {
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">
           <p className="text-secondary font-semibold text-sm uppercase tracking-wider mb-3">
-            OUR SERVICES
+            OUR HISTORY
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Supporting Indonesia's logistics industry
+            Building Indonesia's Logistics Future
           </h2>
           <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            We provide strategic support, training, and connections that empower freight forwarders
-            and logistics professionals nationwide.
+            Over three decades of excellence, innovation, and leadership in shaping the freight forwarding
+            and logistics industry across Indonesia.
           </p>
         </div>
 
-        {/* Service Cards */}
+        {/* History Timeline */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
+          {historyMilestones.map((milestone, index) => (
             <div
               key={index}
               className="group bg-card hover:bg-primary transition-all duration-500 rounded-xl p-8 shadow-md hover:shadow-2xl border border-border hover:border-primary animate-slide-up"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="mb-6 w-20 h-20 bg-secondary/10 group-hover:bg-secondary/20 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-                <img
-                  src={service.icon}
-                  alt={service.title}
-                  className="w-12 h-12 object-contain"
-                />
+              <div className="mb-6">
+                <div className="text-5xl font-bold text-primary group-hover:text-primary-foreground transition-colors duration-300">
+                  {milestone.year}
+                </div>
               </div>
               <h3 className="text-xl font-bold text-foreground group-hover:text-primary-foreground mb-3 transition-colors duration-300">
-                {service.title}
+                {milestone.title}
               </h3>
               <p className="text-muted-foreground group-hover:text-primary-foreground/80 transition-colors duration-300">
-                {service.description}
+                {milestone.description}
               </p>
             </div>
           ))}
