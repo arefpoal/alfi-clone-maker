@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { ArrowRight, X } from "lucide-react";
+import { useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -8,6 +8,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import news1 from "@/assets/news-1.jpg";
 import news2 from "@/assets/news-2.jpg";
 import news3 from "@/assets/news-3.jpg";
@@ -64,7 +70,7 @@ const newsArticles = [
 ];
 
 const News = () => {
-  const navigate = useNavigate();
+  const [selectedArticle, setSelectedArticle] = useState<typeof newsArticles[0] | null>(null);
 
   return (
     <section id="news" className="py-20 bg-muted/30">
@@ -95,7 +101,7 @@ const News = () => {
             {newsArticles.map((article, index) => (
               <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
                 <div
-                  onClick={() => navigate(`/news/${article.id}`)}
+                  onClick={() => setSelectedArticle(article)}
                   className="group bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer h-full"
                 >
                   <div className="relative overflow-hidden h-64">
@@ -148,6 +154,44 @@ const News = () => {
             </Button>
           </div>
         </div>
+
+        {/* News Modal */}
+        <Dialog open={!!selectedArticle} onOpenChange={() => setSelectedArticle(null)}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            {selectedArticle && (
+              <>
+                <DialogHeader>
+                  <DialogTitle className="text-2xl font-bold">{selectedArticle.title}</DialogTitle>
+                </DialogHeader>
+                <div className="mt-4">
+                  <div className="relative h-96 mb-6">
+                    <img
+                      src={selectedArticle.image}
+                      alt={selectedArticle.title}
+                      className="w-full h-full object-cover rounded-lg"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
+                        {selectedArticle.category}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="prose prose-lg max-w-none">
+                    <p className="text-muted-foreground text-lg leading-relaxed">
+                      {selectedArticle.excerpt}
+                    </p>
+                    <p className="mt-4 text-foreground leading-relaxed">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                    <p className="mt-4 text-foreground leading-relaxed">
+                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
