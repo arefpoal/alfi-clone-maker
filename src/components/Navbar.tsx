@@ -6,11 +6,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Globe } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [language, setLanguage] = useState("EN");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,9 +86,22 @@ const Navbar = () => {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="outline" size="sm">
-              Login
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="sm" className="flex items-center gap-2">
+                  <Globe className="h-4 w-4" />
+                  {language}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-background">
+                <DropdownMenuItem onClick={() => setLanguage("EN")}>
+                  English
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setLanguage("ID")}>
+                  Bahasa Indonesia
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Button variant="hero" size="sm">
               Become A Member
             </Button>
@@ -131,9 +145,22 @@ const Navbar = () => {
                 News
               </button>
               <div className="flex flex-col space-y-2 pt-4">
-                <Button variant="outline" size="sm">
-                  Login
-                </Button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="sm" className="flex items-center gap-2 justify-center">
+                      <Globe className="h-4 w-4" />
+                      {language}
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="bg-background">
+                    <DropdownMenuItem onClick={() => setLanguage("EN")}>
+                      English
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setLanguage("ID")}>
+                      Bahasa Indonesia
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
                 <Button variant="hero" size="sm">
                   Become A Member
                 </Button>
