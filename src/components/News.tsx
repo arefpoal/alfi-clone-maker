@@ -89,52 +89,54 @@ const News = () => {
           </p>
         </div>
 
-        {/* News Carousel */}
+        {/* News Slideshow */}
         <Carousel
           opts={{
-            align: "start",
+            align: "center",
             loop: true,
           }}
           className="w-full mb-12"
         >
-          <CarouselContent className="-ml-2 md:-ml-4">
+          <CarouselContent>
             {newsArticles.map((article, index) => (
-              <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={index}>
                 <div
                   onClick={() => setSelectedArticle(article)}
-                  className="group bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer h-full"
+                  className="group cursor-pointer"
                 >
-                  <div className="relative overflow-hidden h-64">
+                  <div className="relative overflow-hidden rounded-2xl h-[500px] md:h-[600px]">
                     <img
                       src={article.image}
                       alt={article.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+                      <span className="bg-secondary text-secondary-foreground text-xs font-bold px-4 py-2 rounded-full mb-4 inline-block">
                         {article.category}
                       </span>
+                      <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 group-hover:text-secondary transition-colors duration-300">
+                        {article.title}
+                      </h3>
+                      <p className="text-white/90 text-base md:text-lg mb-6 max-w-3xl line-clamp-2">
+                        {article.excerpt}
+                      </p>
+                      <Button
+                        variant="secondary"
+                        size="lg"
+                        className="group-hover:scale-105 transition-transform duration-300"
+                      >
+                        READ MORE
+                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                      </Button>
                     </div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-                      {article.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-4 line-clamp-2">{article.excerpt}</p>
-                    <Button
-                      variant="link"
-                      className="p-0 h-auto font-semibold group-hover:text-secondary"
-                    >
-                      READ MORE
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-                    </Button>
                   </div>
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden md:flex" />
-          <CarouselNext className="hidden md:flex" />
+          <CarouselPrevious className="left-4 md:left-8" />
+          <CarouselNext className="right-4 md:right-8" />
         </Carousel>
 
         {/* Newsletter CTA */}
