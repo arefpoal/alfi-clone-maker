@@ -1,6 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import news1 from "@/assets/news-1.jpg";
 import news2 from "@/assets/news-2.jpg";
 import news3 from "@/assets/news-3.jpg";
@@ -30,6 +37,30 @@ const newsArticles = [
     excerpt:
       "Technology adoption accelerates as freight forwarders embrace digital solutions for enhanced efficiency",
   },
+  {
+    id: "4",
+    image: news1,
+    category: "INDUSTRY",
+    title: "Sustainable Practices Reshape Supply Chain Management",
+    excerpt:
+      "Environmental concerns drive logistics companies to adopt eco-friendly practices and green technologies",
+  },
+  {
+    id: "5",
+    image: news2,
+    category: "TECHNOLOGY",
+    title: "AI-Powered Solutions Optimize Warehouse Operations",
+    excerpt:
+      "Artificial intelligence revolutionizes inventory management and warehouse efficiency in the logistics sector",
+  },
+  {
+    id: "6",
+    image: news3,
+    category: "TRADE",
+    title: "Cross-Border E-Commerce Drives Logistics Growth",
+    excerpt:
+      "Rising online shopping demands push logistics providers to expand international delivery capabilities",
+  },
 ];
 
 const News = () => {
@@ -52,43 +83,53 @@ const News = () => {
           </p>
         </div>
 
-        {/* News Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {newsArticles.map((article, index) => (
-            <div
-              key={index}
-              onClick={() => navigate(`/news/${article.id}`)}
-              className="group bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 animate-slide-up cursor-pointer"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="relative overflow-hidden h-64">
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
-                    {article.category}
-                  </span>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-                  {article.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 line-clamp-2">{article.excerpt}</p>
-                <Button
-                  variant="link"
-                  className="p-0 h-auto font-semibold group-hover:text-secondary"
+        {/* News Carousel */}
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+          }}
+          className="w-full mb-12"
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {newsArticles.map((article, index) => (
+              <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                <div
+                  onClick={() => navigate(`/news/${article.id}`)}
+                  className="group bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer h-full"
                 >
-                  READ MORE
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
+                  <div className="relative overflow-hidden h-64">
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
+                        {article.category}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                      {article.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-4 line-clamp-2">{article.excerpt}</p>
+                    <Button
+                      variant="link"
+                      className="p-0 h-auto font-semibold group-hover:text-secondary"
+                    >
+                      READ MORE
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+                    </Button>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
+        </Carousel>
 
         {/* Newsletter CTA */}
         <div className="bg-primary rounded-2xl p-8 md:p-12 text-center animate-fade-in">
