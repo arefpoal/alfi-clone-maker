@@ -99,124 +99,127 @@ const News = () => {
           </p>
         </div>
 
-        {/* Internal News */}
-        <div className="mb-16">
-          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
-            Company Updates
-          </h3>
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 5000,
-                stopOnInteraction: true,
-              }),
-            ]}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {internalNews.map((article, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div
-                    onClick={() => setSelectedArticle(article)}
-                    className="group cursor-pointer bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 h-full"
-                  >
-                    <div className="relative overflow-hidden h-64">
-                      <img
-                        src={article.image}
-                        alt={article.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
-                          {article.category}
-                        </span>
+        {/* News Grid - Side by Side */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          {/* Internal News - Left */}
+          <div>
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
+              Company Updates
+            </h3>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 5000,
+                  stopOnInteraction: true,
+                }),
+              ]}
+              className="w-full"
+            >
+              <CarouselContent>
+                {internalNews.map((article, index) => (
+                  <CarouselItem key={index}>
+                    <div
+                      onClick={() => setSelectedArticle(article)}
+                      className="group cursor-pointer bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 h-full"
+                    >
+                      <div className="relative overflow-hidden h-64">
+                        <img
+                          src={article.image}
+                          alt={article.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        <div className="absolute top-4 left-4">
+                          <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
+                            {article.category}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                          {article.title}
+                        </h3>
+                        <p className="text-muted-foreground mb-4 line-clamp-2">{article.excerpt}</p>
+                        <Button
+                          variant="link"
+                          className="p-0 h-auto font-semibold group-hover:text-secondary"
+                        >
+                          READ MORE
+                          <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+                        </Button>
                       </div>
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-                        {article.title}
-                      </h3>
-                      <p className="text-muted-foreground mb-4 line-clamp-2">{article.excerpt}</p>
-                      <Button
-                        variant="link"
-                        className="p-0 h-auto font-semibold group-hover:text-secondary"
-                      >
-                        READ MORE
-                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-                      </Button>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
-          </Carousel>
-        </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex" />
+              <CarouselNext className="hidden md:flex" />
+            </Carousel>
+          </div>
 
-        {/* External News */}
-        <div className="mb-12">
-          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
-            Industry News
-          </h3>
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 5000,
-                stopOnInteraction: true,
-              }),
-            ]}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {externalNews.map((article, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div
-                    onClick={() => setSelectedArticle(article)}
-                    className="group cursor-pointer bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 h-full"
-                  >
-                    <div className="relative overflow-hidden h-64">
-                      <img
-                        src={article.image}
-                        alt={article.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
-                          {article.category}
-                        </span>
+          {/* External News - Right */}
+          <div>
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
+              Industry News
+            </h3>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 5000,
+                  stopOnInteraction: true,
+                }),
+              ]}
+              className="w-full"
+            >
+              <CarouselContent>
+                {externalNews.map((article, index) => (
+                  <CarouselItem key={index}>
+                    <div
+                      onClick={() => setSelectedArticle(article)}
+                      className="group cursor-pointer bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 h-full"
+                    >
+                      <div className="relative overflow-hidden h-64">
+                        <img
+                          src={article.image}
+                          alt={article.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        <div className="absolute top-4 left-4">
+                          <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
+                            {article.category}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                          {article.title}
+                        </h3>
+                        <p className="text-muted-foreground mb-4 line-clamp-2">{article.excerpt}</p>
+                        <Button
+                          variant="link"
+                          className="p-0 h-auto font-semibold group-hover:text-secondary"
+                        >
+                          READ MORE
+                          <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+                        </Button>
                       </div>
                     </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-                        {article.title}
-                      </h3>
-                      <p className="text-muted-foreground mb-4 line-clamp-2">{article.excerpt}</p>
-                      <Button
-                        variant="link"
-                        className="p-0 h-auto font-semibold group-hover:text-secondary"
-                      >
-                        READ MORE
-                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-                      </Button>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
-          </Carousel>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex" />
+              <CarouselNext className="hidden md:flex" />
+            </Carousel>
+          </div>
         </div>
 
         {/* Newsletter CTA */}
