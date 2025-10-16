@@ -50,6 +50,33 @@ const newsArticles = [
   {
     id: "4",
     image: news1,
+    category: "COMPANY NEWS",
+    title: "Award Recognition: Excellence in Logistics Services",
+    excerpt:
+      "Proud to receive industry recognition for outstanding customer service and operational excellence",
+    isInternal: true,
+  },
+  {
+    id: "5",
+    image: news2,
+    category: "COMPANY NEWS",
+    title: "Sustainability Initiative: Green Fleet Expansion",
+    excerpt:
+      "Investing in eco-friendly vehicles to reduce carbon footprint and support environmental goals",
+    isInternal: true,
+  },
+  {
+    id: "6",
+    image: news3,
+    category: "COMPANY NEWS",
+    title: "Employee Training Program Launch",
+    excerpt:
+      "New comprehensive training initiative to enhance workforce skills and career development opportunities",
+    isInternal: true,
+  },
+  {
+    id: "7",
+    image: news1,
     category: "LOGISTICS",
     title: "Government Policies Shape Indonesia's Logistics Industry",
     excerpt:
@@ -57,7 +84,7 @@ const newsArticles = [
     isInternal: false,
   },
   {
-    id: "5",
+    id: "8",
     image: news2,
     category: "TECHNOLOGY",
     title: "AI-Powered Solutions Optimize Warehouse Operations",
@@ -66,12 +93,39 @@ const newsArticles = [
     isInternal: false,
   },
   {
-    id: "6",
+    id: "9",
     image: news3,
     category: "TRADE",
     title: "Cross-Border E-Commerce Drives Logistics Growth",
     excerpt:
       "Rising online shopping demands push logistics providers to expand international delivery capabilities",
+    isInternal: false,
+  },
+  {
+    id: "10",
+    image: news1,
+    category: "INDUSTRY",
+    title: "Sustainable Practices Reshape Supply Chain Management",
+    excerpt:
+      "Environmental concerns drive logistics companies to adopt eco-friendly practices and green technologies",
+    isInternal: false,
+  },
+  {
+    id: "11",
+    image: news2,
+    category: "TECHNOLOGY",
+    title: "Digital Transformation in Freight Forwarding Sector",
+    excerpt:
+      "Technology adoption accelerates as freight forwarders embrace digital solutions for enhanced efficiency",
+    isInternal: false,
+  },
+  {
+    id: "12",
+    image: news3,
+    category: "LOGISTICS",
+    title: "Global Supply Chain Innovations Transform Local Markets",
+    excerpt:
+      "International supply chain innovations are revolutionizing logistics operations across Indonesia",
     isInternal: false,
   },
 ];
