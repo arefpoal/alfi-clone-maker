@@ -23,34 +23,38 @@ const newsArticles = [
   {
     id: "1",
     image: news1,
-    category: "LOGISTICS",
-    title: "Government Policies Shape Indonesia's Logistics Industry",
+    category: "COMPANY NEWS",
+    title: "New Service Launch: Enhanced Regional Distribution",
     excerpt:
-      "Government Policies Shape Indonesia's Logistics Industry Government Policies Shape Indonesia's Logistics Industry",
+      "We're expanding our distribution network across major Indonesian cities to provide faster delivery times",
+    isInternal: true,
   },
   {
     id: "2",
     image: news2,
-    category: "LOGISTICS",
-    title: "Global Supply Chain Innovations Transform Local Markets",
+    category: "COMPANY NEWS",
+    title: "Partnership Announcement with Leading E-Commerce Platform",
     excerpt:
-      "Discover how international supply chain innovations are revolutionizing logistics operations across Indonesia",
+      "Strategic collaboration aims to streamline last-mile delivery and improve customer experience nationwide",
+    isInternal: true,
   },
   {
     id: "3",
     image: news3,
-    category: "LOGISTICS",
-    title: "Digital Transformation in Freight Forwarding Sector",
+    category: "COMPANY NEWS",
+    title: "Opening New Warehouse Facility in Surabaya",
     excerpt:
-      "Technology adoption accelerates as freight forwarders embrace digital solutions for enhanced efficiency",
+      "State-of-the-art facility equipped with automation technology to boost operational efficiency",
+    isInternal: true,
   },
   {
     id: "4",
     image: news1,
-    category: "INDUSTRY",
-    title: "Sustainable Practices Reshape Supply Chain Management",
+    category: "LOGISTICS",
+    title: "Government Policies Shape Indonesia's Logistics Industry",
     excerpt:
-      "Environmental concerns drive logistics companies to adopt eco-friendly practices and green technologies",
+      "New regulatory framework aims to modernize freight forwarding and improve supply chain transparency",
+    isInternal: false,
   },
   {
     id: "5",
@@ -59,6 +63,7 @@ const newsArticles = [
     title: "AI-Powered Solutions Optimize Warehouse Operations",
     excerpt:
       "Artificial intelligence revolutionizes inventory management and warehouse efficiency in the logistics sector",
+    isInternal: false,
   },
   {
     id: "6",
@@ -67,8 +72,12 @@ const newsArticles = [
     title: "Cross-Border E-Commerce Drives Logistics Growth",
     excerpt:
       "Rising online shopping demands push logistics providers to expand international delivery capabilities",
+    isInternal: false,
   },
 ];
+
+const internalNews = newsArticles.filter(article => article.isInternal);
+const externalNews = newsArticles.filter(article => !article.isInternal);
 
 const News = () => {
   const [selectedArticle, setSelectedArticle] = useState<typeof newsArticles[0] | null>(null);
@@ -90,60 +99,125 @@ const News = () => {
           </p>
         </div>
 
-        {/* News Slideshow */}
-        <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
-          plugins={[
-            Autoplay({
-              delay: 5000,
-              stopOnInteraction: true,
-            }),
-          ]}
-          className="w-full mb-12"
-        >
-          <CarouselContent className="-ml-2 md:-ml-4">
-            {newsArticles.map((article, index) => (
-              <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                <div
-                  onClick={() => setSelectedArticle(article)}
-                  className="group cursor-pointer bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 h-full"
-                >
-                  <div className="relative overflow-hidden h-64">
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
-                        {article.category}
-                      </span>
+        {/* Internal News */}
+        <div className="mb-16">
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
+            Company Updates
+          </h3>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 5000,
+                stopOnInteraction: true,
+              }),
+            ]}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {internalNews.map((article, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div
+                    onClick={() => setSelectedArticle(article)}
+                    className="group cursor-pointer bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 h-full"
+                  >
+                    <div className="relative overflow-hidden h-64">
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
+                          {article.category}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                        {article.title}
+                      </h3>
+                      <p className="text-muted-foreground mb-4 line-clamp-2">{article.excerpt}</p>
+                      <Button
+                        variant="link"
+                        className="p-0 h-auto font-semibold group-hover:text-secondary"
+                      >
+                        READ MORE
+                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+                      </Button>
                     </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-                      {article.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-4 line-clamp-2">{article.excerpt}</p>
-                    <Button
-                      variant="link"
-                      className="p-0 h-auto font-semibold group-hover:text-secondary"
-                    >
-                      READ MORE
-                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-                    </Button>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
+        </div>
+
+        {/* External News */}
+        <div className="mb-12">
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
+            Industry News
+          </h3>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 5000,
+                stopOnInteraction: true,
+              }),
+            ]}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {externalNews.map((article, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div
+                    onClick={() => setSelectedArticle(article)}
+                    className="group cursor-pointer bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 h-full"
+                  >
+                    <div className="relative overflow-hidden h-64">
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      <div className="absolute top-4 left-4">
+                        <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
+                          {article.category}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
+                        {article.title}
+                      </h3>
+                      <p className="text-muted-foreground mb-4 line-clamp-2">{article.excerpt}</p>
+                      <Button
+                        variant="link"
+                        className="p-0 h-auto font-semibold group-hover:text-secondary"
+                      >
+                        READ MORE
+                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="hidden md:flex" />
-          <CarouselNext className="hidden md:flex" />
-        </Carousel>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
+          </Carousel>
+        </div>
 
         {/* Newsletter CTA */}
         <div className="bg-primary rounded-2xl p-8 md:p-12 text-center animate-fade-in">
