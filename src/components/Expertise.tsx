@@ -33,7 +33,7 @@ const Expertise = () => {
             </p>
 
             <div className="space-y-4 mb-8">
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3 animate-fade-in" style={{ animationDelay: '0.1s' }}>
                 <div className="bg-secondary/10 rounded-full p-1 mt-1">
                   <Check className="w-5 h-5 text-secondary" />
                 </div>
@@ -41,7 +41,7 @@ const Expertise = () => {
                   Certified programs aligned with global and national standards
                 </p>
               </div>
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3 animate-fade-in" style={{ animationDelay: '0.2s' }}>
                 <div className="bg-secondary/10 rounded-full p-1 mt-1">
                   <Check className="w-5 h-5 text-secondary" />
                 </div>
@@ -49,7 +49,7 @@ const Expertise = () => {
                   Practical skills for future-ready logistics careers
                 </p>
               </div>
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3 animate-fade-in" style={{ animationDelay: '0.3s' }}>
                 <div className="bg-secondary/10 rounded-full p-1 mt-1">
                   <Check className="w-5 h-5 text-secondary" />
                 </div>
