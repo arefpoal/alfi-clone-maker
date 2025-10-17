@@ -235,7 +235,7 @@ const News = () => {
             >
               <CarouselContent>
                 {externalNews.map((article, index) => (
-                  <CarouselItem key={index}>
+                  <CarouselItem key={index} className="md:basis-1/2">
                     <div
                       onClick={() => setSelectedArticle(article)}
                       className="group cursor-pointer bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 h-full"
