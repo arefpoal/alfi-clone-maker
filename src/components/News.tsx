@@ -137,142 +137,68 @@ const News = () => {
   const [selectedArticle, setSelectedArticle] = useState<typeof newsArticles[0] | null>(null);
 
   return (
-    <section id="news" className="py-20 bg-muted/30">
+    <section id="news" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <p className="text-secondary font-semibold text-sm uppercase tracking-wider mb-3">
-            LATEST NEWS
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Latest updates from us
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-3xl mx-auto">
-            Stay informed with the latest insights, policy updates, and industry developments
-            shaping the future of logistics in Indonesia.
-          </p>
-        </div>
-
         {/* News Grid - Side by Side */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Internal News - Left */}
-          <div>
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
-              Company Updates
-            </h3>
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              plugins={[
-                Autoplay({
-                  delay: 5000,
-                  stopOnInteraction: true,
-                }),
-              ]}
-              className="w-full"
-            >
-              <CarouselContent>
-                {internalNews.map((article, index) => (
-                  <CarouselItem key={index}>
-                    <div
-                      onClick={() => setSelectedArticle(article)}
-                      className="group cursor-pointer bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 h-full"
-                    >
-                      <div className="relative overflow-hidden h-64">
-                        <img
-                          src={article.image}
-                          alt={article.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                        <div className="absolute top-4 left-4">
-                          <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
-                            {article.category}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="p-6">
-                        <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-                          {article.title}
-                        </h3>
-                        <p className="text-muted-foreground mb-4 line-clamp-2">{article.excerpt}</p>
-                        <Button
-                          variant="link"
-                          className="p-0 h-auto font-semibold group-hover:text-secondary"
-                        >
-                          READ MORE
-                          <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-                        </Button>
-                      </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:flex" />
-              <CarouselNext className="hidden md:flex" />
-            </Carousel>
+          <div className="animate-fade-in">
+            <div className="flex items-center justify-between mb-8 border-l-4 border-secondary pl-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Company Updates
+              </h2>
+              <Button 
+                variant="link" 
+                className="text-secondary hover:text-secondary/80 font-semibold"
+                onClick={() => {}}
+              >
+                See More →
+              </Button>
+            </div>
+            <div className="space-y-4">
+              {internalNews.map((article, index) => (
+                <div
+                  key={article.id}
+                  onClick={() => setSelectedArticle(article)}
+                  className="group cursor-pointer py-3 border-b border-border hover:border-secondary transition-colors duration-300"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <h3 className="text-lg font-medium text-foreground group-hover:text-secondary transition-colors duration-300 leading-relaxed">
+                    {article.title}
+                  </h3>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* External News - Right */}
-          <div>
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-8">
-              Industry News
-            </h3>
-            <Carousel
-              opts={{
-                align: "start",
-                loop: true,
-              }}
-              plugins={[
-                Autoplay({
-                  delay: 5000,
-                  stopOnInteraction: true,
-                }),
-              ]}
-              className="w-full"
-            >
-              <CarouselContent>
-                {externalNews.map((article, index) => (
-                  <CarouselItem key={index} className="md:basis-1/2">
-                    <div
-                      onClick={() => setSelectedArticle(article)}
-                      className="group cursor-pointer bg-card rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 h-full"
-                    >
-                      <div className="relative overflow-hidden h-64">
-                        <img
-                          src={article.image}
-                          alt={article.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                        <div className="absolute top-4 left-4">
-                          <span className="bg-secondary text-secondary-foreground text-xs font-bold px-3 py-1 rounded-full">
-                            {article.category}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="p-6">
-                        <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-                          {article.title}
-                        </h3>
-                        <p className="text-muted-foreground mb-4 line-clamp-2">{article.excerpt}</p>
-                        <Button
-                          variant="link"
-                          className="p-0 h-auto font-semibold group-hover:text-secondary"
-                        >
-                          READ MORE
-                          <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-                        </Button>
-                      </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="hidden md:flex" />
-              <CarouselNext className="hidden md:flex" />
-            </Carousel>
+          <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <div className="flex items-center justify-between mb-8 border-l-4 border-secondary pl-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                Industry News
+              </h2>
+              <Button 
+                variant="link" 
+                className="text-secondary hover:text-secondary/80 font-semibold"
+                onClick={() => {}}
+              >
+                See More →
+              </Button>
+            </div>
+            <div className="space-y-4">
+              {externalNews.map((article, index) => (
+                <div
+                  key={article.id}
+                  onClick={() => setSelectedArticle(article)}
+                  className="group cursor-pointer py-3 border-b border-border hover:border-secondary transition-colors duration-300"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <h3 className="text-lg font-medium text-foreground group-hover:text-secondary transition-colors duration-300 leading-relaxed">
+                    {article.title}
+                  </h3>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
